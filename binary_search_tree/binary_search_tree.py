@@ -60,17 +60,38 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node is None: # if we're not at a node
+            return # there's nothing to print, so return
+        else: # otherwise, if we are at a node
+            self.in_order_print(node.left) # go as far along the left as we can
+            print(node.value) # and print the value we find
+            self.in_order_print(node.right) # nowhere else on left, so go right
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        queue = Queue()
+        queue.enqueue(node)
+        while queue.len() > 0:
+            current_node = queue.dequeue()
+            print(current_node.value)
+            if current_node.right is not None:
+                queue.enqueue(current_node.right)
+            if current_node.left is not None:
+                queue.enqueue(current_node.left)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        stack = Stack()
+        stack.push(node)
+        while stack.len() > 0:
+            current_node = stack.pop()
+            print(current_node.value)
+            if current_node.right is not None:
+                stack.push(current_node.right)
+            if current_node.left is not None:
+                stack.push(current_node.left)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
